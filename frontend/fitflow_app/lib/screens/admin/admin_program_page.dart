@@ -1,8 +1,3 @@
-import 'package:fitflow_app/models/bloc.dart';
-import 'package:fitflow_app/models/bloc_variant.dart';
-import 'package:fitflow_app/models/exercice_bloc.dart';
-import 'package:fitflow_app/models/program.dart';
-import 'package:fitflow_app/models/session.dart';
 import 'package:fitflow_app/providers/program_provider.dart';
 import 'package:fitflow_app/utils/bloc_form_data.dart';
 import 'package:fitflow_app/utils/bloc_variant_form_data.dart';
