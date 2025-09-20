@@ -3,6 +3,7 @@ import 'package:fitflow_app/models/bloc_variant.dart';
 import 'package:fitflow_app/models/exercice_bloc.dart';
 import 'package:fitflow_app/models/program.dart';
 import 'package:fitflow_app/models/session.dart';
+import 'package:fitflow_app/providers/program_provider.dart';
 import 'package:fitflow_app/utils/bloc_form_data.dart';
 import 'package:fitflow_app/utils/bloc_variant_form_data.dart';
 import 'package:fitflow_app/utils/exercice_bloc_form_data.dart';
@@ -10,15 +11,16 @@ import 'package:fitflow_app/utils/program_form_data.dart';
 import 'package:fitflow_app/utils/program_form_data_mapper.dart';
 import 'package:fitflow_app/utils/session_form_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AdminPage extends StatefulWidget {
+class AdminPage extends ConsumerStatefulWidget {
   const AdminPage({super.key});
 
   @override
-  State<AdminPage> createState() => _AdminPageState();
+  ConsumerState<AdminPage> createState() => _AdminPageState();
 }
 
-class _AdminPageState extends State<AdminPage> {
+class _AdminPageState extends ConsumerState<AdminPage> {
   // Programme
 
   final ProgramFormData _programFormData = ProgramFormData();
@@ -43,7 +45,7 @@ class _AdminPageState extends State<AdminPage> {
     final programDto = _programFormData.toProgramDto();
     try {
       final repo = ref.read(programRepositoryProvider);
-      await repo.createProgram(programDto);
+      await repo.create(programDto);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Programme créé avec succès !')),
       );
@@ -69,7 +71,7 @@ class _AdminPageState extends State<AdminPage> {
               'Sessions',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            ..._sessions.asMap().entries.map(
+            ..._programFormData.sessions.asMap().entries.map(
               (entry) => _buildSessionCard(entry.key, entry.value),
             ),
             const SizedBox(height: 10),
@@ -91,19 +93,19 @@ class _AdminPageState extends State<AdminPage> {
   Widget _buildProgramFields() => Column(
     children: [
       TextField(
-        controller: _titleController,
+        controller: _programFormData.titleController,
         decoration: const InputDecoration(labelText: 'Title'),
       ),
       TextField(
-        controller: _descriptionController,
+        controller: _programFormData.descriptionController,
         decoration: const InputDecoration(labelText: 'Description'),
       ),
       TextField(
-        controller: _levelController,
+        controller: _programFormData.levelController,
         decoration: const InputDecoration(labelText: 'Level'),
       ),
       TextField(
-        controller: _estimatedDurationController,
+        controller: _programFormData.estimatedDurationController,
         decoration: const InputDecoration(
           labelText: 'Estimated Duration (min)',
         ),
