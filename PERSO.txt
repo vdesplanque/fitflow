@@ -1,0 +1,15 @@
+Prerequisite:
+- .net
+- flutter
+
+cd backend
+dotnet new webapi -n FitFlow.API
+
+
+flutter clean
+flutter pub cache repair
+flutter pub add freezed_annotation
+flutter pub add --dev freezed build_runner
+flutter pub add --dev json_serializable
+flutter pub run build_runner build --delete-conflicting-outputs
+flutter run -d web-server --web-port=5202

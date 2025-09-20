@@ -1,0 +1,20 @@
+# .NET
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userprefs
+
+# Flutter/Dart
+fitflow_app/.dart_tool/
+fitflow_app/.packages
+fitflow_app/.flutter-plugins
+fitflow_app/build/
+fitflow_app/.idea/
+fitflow_app/.vscode/
+
+# Others
+*.log
+*.tmp
+.env
+.vscode/

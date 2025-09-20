@@ -1,0 +1,7 @@
+En cours : appel api pour créer directement un programme
+Problème au add: si les ids n'existent pas, il faudrait ne pas envoyer la propriété vide dans le json, sinon problème de sérialization côté backend
+
+Next:
+- formulaire admin "Ajouter Exercice"
+- Dans la création d'un programme, puis d'une session et d'un bloc, au moment d'ajouter un exercice, mettre un formulaire ET une liste déroulante pour choisir parmi les exercices existants
+- Revoir avec Louis le fonctionnement voulu pour les BlocVariantEntity

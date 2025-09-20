@@ -1,0 +1,86 @@
+1. Structure générale du projet
+Organisation des dossiers (API, Services, Repositories, DTOs, Models, etc.).
+
+Respect des conventions de nommage (classes, interfaces, namespaces).
+
+Séparation claire des responsabilités (pas de logique métier dans les controllers, pas d’accès DB dans les services).
+
+Cohérence entre backend et frontend (si applicable).
+
+2. Modèles & DTO
+Modèles (Entities) : conformité avec la base de données.
+
+DTOs : bien distincts des modèles, adaptés aux besoins de l’UI.
+
+Mappage clair entre Models ↔ DTOs (AutoMapper ou mapping manuel).
+
+Gestion des propriétés inutiles ou sensibles (ex : ne pas exposer un mot de passe).
+
+3. Repository Layer
+Implémentation correcte du RepositoryBase (Add, GetAll, GetById, Update, Delete).
+
+Bonne utilisation des génériques pour éviter la duplication de code.
+
+Respect du principe Single Responsibility (chaque repository ne gère qu’un type d’entité).
+
+Optimisation des requêtes (inclure les relations nécessaires sans over-fetching).
+
+4. Service Layer
+Services qui orchestrent la logique métier (pas juste passerelle vers le repository).
+
+Services indépendants des détails d’implémentation des repositories.
+
+Gestion claire des erreurs (exceptions personnalisées si besoin).
+
+Utilisation des transactions si nécessaire (pour plusieurs opérations liées).
+
+5. Controllers
+Respect du principe “Controller = point d’entrée” (pas de logique lourde dedans).
+
+Méthodes claires, lisibles, nommage cohérent avec les endpoints.
+
+Bonne gestion des codes HTTP (200, 201, 404, 400, etc.).
+
+Validation des entrées (ModelState, DataAnnotations).
+
+6. Base de données
+Cohérence entre les entités C# et le schéma de la DB.
+
+Bonne gestion des migrations EF Core.
+
+Indexation et clés primaires/étrangères bien définies.
+
+Relations (1–n, n–n) correctement configurées.
+
+7. Tests
+Présence de tests unitaires (repositories, services, mapping).
+
+Tests d’intégration si applicable.
+
+Données de test claires et représentatives.
+
+8. Sécurité
+Pas d’infos sensibles exposées dans les DTOs ou les logs.
+
+Validation des données côté API.
+
+Gestion de l’authentification/autorisation si déjà implémentée.
+
+Protection contre les injections SQL (EF Core gère déjà une bonne partie).
+
+9. Qualité & Performance
+Code lisible, commentaires pertinents uniquement.
+
+Pas de duplication inutile.
+
+Chargement des données optimisé (Include, ThenInclude si besoin).
+
+Asynchronisme correctement utilisé (async/await).
+
+10. Documentation
+README clair (comment lancer le projet, config, DB).
+
+Explication rapide des endpoints (Swagger si possible).
+
+Indications sur les modèles de données et les relations.
+
