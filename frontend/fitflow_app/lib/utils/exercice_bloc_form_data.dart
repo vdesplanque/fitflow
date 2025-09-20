@@ -27,5 +27,13 @@ class ExerciceBlocFormData {
     );
   }
 
+  dynamic dispose() {
+    nameController.dispose();
+    descriptionController.dispose();
+    videoUrlController.dispose();
+    repetitionsController.dispose();
+    durationController.dispose();
+  }
+
   ExerciceBlocFormData();
 }

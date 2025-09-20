@@ -15,8 +15,8 @@ extension ProgramFormDataMapper on ProgramFormData {
       level: levelController.text,
       estimatedDuration: int.tryParse(estimatedDurationController.text) ?? 0,
       typeProgrammeId: typeProgrammeId, // à définir selon ton formulaire
-      sessionCount: sessionsFormData.length,
-      sessions: sessionsFormData.map((sessionForm) {
+      sessionCount: sessions.length,
+      sessions: sessions.map((sessionForm) {
         return Session(
           id: '', // même logique que pour le programme
           title: sessionForm.titleController.text,

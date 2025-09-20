@@ -20,5 +20,15 @@ class BlocFormData {
     );
   }
 
+  dynamic dispose() {
+    titleController.dispose();
+    for (var e in exercices) {
+      e.dispose();
+    }
+    for (var v in variants) {
+      v.dispose();
+    }
+  }
+
   BlocFormData();
 }

@@ -13,5 +13,10 @@ class BlocVariantFormData {
     );
   }
 
+  dynamic dispose() {
+    nameController.dispose();
+    descriptionController.dispose();
+  }
+
   BlocVariantFormData();
 }

@@ -9,7 +9,17 @@ class ProgramFormData {
       TextEditingController();
 
   String typeProgrammeId = ''; // Dropdown ou autre
-  List<SessionFormData> sessionsFormData = [];
+  List<SessionFormData> sessions = [];
+
+  dynamic dispose() {
+    titleController.dispose();
+    descriptionController.dispose();
+    levelController.dispose();
+    estimatedDurationController.dispose();
+    for (var s in sessions) {
+      s.dispose();
+    }
+  }
 
   ProgramFormData();
 }

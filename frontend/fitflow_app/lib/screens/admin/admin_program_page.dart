@@ -20,47 +20,27 @@ class AdminPage extends StatefulWidget {
 
 class _AdminPageState extends State<AdminPage> {
   // Programme
-  final _titleController = TextEditingController();
-  final _descriptionController = TextEditingController();
-  final _levelController = TextEditingController();
-  final _estimatedDurationController = TextEditingController();
 
-  final List<SessionFormData> _sessions = [];
+  final ProgramFormData _programFormData = ProgramFormData();
 
   @override
   void dispose() {
-    _titleController.dispose();
-    _descriptionController.dispose();
-    _levelController.dispose();
-    _estimatedDurationController.dispose();
-    for (var s in _sessions) {
-      s.dispose();
-    }
+    _programFormData.dispose();
     super.dispose();
   }
 
-  void _addSession() => setState(() => _sessions.add(SessionFormData()));
+  void _addSession() =>
+      setState(() => _programFormData.sessions.add(SessionFormData()));
 
   void _removeSession(int index) {
     setState(() {
-      _sessions[index].dispose();
-      _sessions.removeAt(index);
+      _programFormData.sessions[index].dispose();
+      _programFormData.sessions.removeAt(index);
     });
   }
 
   void _submit() async {
-    final program = Program(
-      id: '', // backend générera
-      title: _titleController.text,
-      description: _descriptionController.text,
-      level: _levelController.text,
-      estimatedDuration: int.tryParse(_estimatedDurationController.text) ?? 0,
-      typeProgrammeId: '',
-      sessionCount: _sessions.length,
-      sessions: _sessions.map((s) => s.toSession()).toList(),
-    );
-
-    final programDto = programFormData.toProgramDto();
+    final programDto = _programFormData.toProgramDto();
     try {
       final repo = ref.read(programRepositoryProvider);
       await repo.createProgram(programDto);

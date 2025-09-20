@@ -14,5 +14,12 @@ class SessionFormData {
     );
   }
 
+  dynamic dispose() {
+    titleController.dispose();
+    for (var b in blocs) {
+      b.dispose();
+    }
+  }
+
   SessionFormData();
 }
