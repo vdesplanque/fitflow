@@ -18,7 +18,7 @@ class AuthRepository extends RepositoryBase {
         return null;
       }
 
-      print('googleUser : ${googleUser}');
+      print('googleUser : $googleUser');
 
       final googleAuth = await googleUser.authentication;
       final idToken = googleAuth.idToken;

@@ -1,6 +1,3 @@
-import 'package:fitflow_app/models/bloc.dart';
-import 'package:fitflow_app/models/bloc_variant.dart';
-import 'package:fitflow_app/models/exercice_bloc.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'session.dart';

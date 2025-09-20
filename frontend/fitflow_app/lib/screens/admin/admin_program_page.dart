@@ -33,7 +33,9 @@ class _AdminPageState extends State<AdminPage> {
     _descriptionController.dispose();
     _levelController.dispose();
     _estimatedDurationController.dispose();
-    for (var s in _sessions) s.dispose();
+    for (var s in _sessions) {
+      s.dispose();
+    }
     super.dispose();
   }
 
@@ -46,7 +48,7 @@ class _AdminPageState extends State<AdminPage> {
     });
   }
 
-  void _submit() {
+  void _submit() async {
     final program = Program(
       id: '', // backend générera
       title: _titleController.text,
@@ -58,32 +60,14 @@ class _AdminPageState extends State<AdminPage> {
       sessions: _sessions.map((s) => s.toSession()).toList(),
     );
 
-    // TODO : appeler ton repository pour poster le programme
-    print('Programme à envoyer : ${program.toJson()}');
-
-    // 1. Construire le DTO complet à partir du formulaire
-    final programFormData = ProgramFormData();
-    programFormData.sessionsFormData.add(SessionFormData());
-    programFormData.sessionsFormData[0].blocs.add(BlocFormData());
-
     final programDto = programFormData.toProgramDto();
-
     try {
-      // 2. Appeler le repository pour poster le programme
       final repo = ref.read(programRepositoryProvider);
       await repo.createProgram(programDto);
-
-      // 3. Notifier l'utilisateur
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Programme créé avec succès !')),
       );
-
-      // 4. Réinitialiser le formulaire si nécessaire
-      
-      programFormData.reset();
-
     } catch (e) {
-      // Affichage d'erreur si problème
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Erreur lors de la création : $e')),
       );

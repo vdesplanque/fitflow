@@ -2,7 +2,7 @@ import 'package:fitflow_app/models/exercice_bloc.dart';
 import 'package:flutter/material.dart';
 
 class ExerciceBlocFormData {
-  final String exerciceId; // ID existant du catalogue
+  String exerciceId = ''; // ID existant du catalogue
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController videoUrlController = TextEditingController();
@@ -27,5 +27,5 @@ class ExerciceBlocFormData {
     );
   }
 
-  ExerciceBlocFormData({required this.exerciceId});
+  ExerciceBlocFormData();
 }
